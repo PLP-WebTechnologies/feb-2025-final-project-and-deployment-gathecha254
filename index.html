@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Mood Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="happy">
+
+  <header>
+    <h1>🧠 Mood Tracker</h1>
+    <p id="greeting">Welcome back!</p>
+
+    <nav class="tabs">
+      <button data-tab="dashboard" class="active"><span>🏠</span><span class="text-label"> Dashboard</span></button>
+<button data-tab="affirmations"><span>💭</span><span class="text-label"> Affirmations</span></button>
+<button data-tab="history"><span>📜</span><span class="text-label"> Mood History</span></button>
+<button data-tab="moods"><span>📘</span><span class="text-label"> Mood Guide</span></button>
+<button data-tab="settings"><span>⚙️</span><span class="text-label"> Settings</span></button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="tab-content active">
+      <h2>How are you feeling today?</h2>
+      <select id="moodSelect"></select>
+
+      <label><input type="checkbox" id="soundToggle" checked /> Play ambient sound</label>
+      <audio id="ambientSound" loop></audio>
+
+      <div class="affirmation" id="dailyAffirmation"></div>
+      <p>Find peace in admiring the photos below.</p>
+
+      <div class="carousel">
+        <img id="carouselImage" src="" alt="Mood Image" />
+      </div>
+
+      <label for="journalEntry">Write your thoughts:</label>
+      <textarea id="journalEntry" rows="4" placeholder="What’s on your mind?"></textarea>
+      <button id="saveJournalBtn">💾 Save Entry</button>
+
+      <h3>Your Recent Mood Pattern</h3>
+      <h4 id="calendarMonthYear">Loading...</h4>
+<div class="calendar-grid" id="homepageCalendarGrid"></div>
+      <div class="calendar-grid" id="homepageCalendarGrid"></div>
+    </section>
+
+    <!-- AFFIRMATIONS -->
+    <section id="affirmations" class="tab-content">
+      <h2>Affirmations</h2>
+      <select id="affirmationMoodSelect"></select>
+      <ul id="affirmationList"></ul>
+      <input type="text" id="newAffirmationInput" placeholder="Add new affirmation..." />
+      <button id="addAffirmationBtn">➕ Add Affirmation</button>
+    </section>
+
+    <!-- MOOD HISTORY -->
+    <section id="history" class="tab-content">
+      <h2>Mood History</h2>
+      <div id="historyList"></div>
+    </section>
+
+    <!-- MOOD GUIDE -->
+    <section id="moods" class="tab-content">
+      <h2>Mood Guide</h2>
+      <div id="moodGuideList"></div>
+
+      <h3>Add New Mood</h3>
+      <input type="text" id="newMoodName" placeholder="Mood name (e.g., Grateful)">
+      <input type="text" id="newMoodLabel" placeholder="Emoji + label (e.g., 🥰 Loved)">
+      <input type="text" id="newMoodDescription" placeholder="Description">
+      <button id="addMoodBtn">➕ Add Mood</button>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="settings" class="tab-content">
+      <h2>Customize Your Experience</h2>
+      <div class="theme-picker">
+        <label>Background Color: <input type="color" id="bgColorPicker" /></label>
+        <label>Text Color: <input type="color" id="textColorPicker" /></label>
+        <label>Button Color: <input type="color" id="buttonColorPicker" /></label>
+        <label>Header Color: <input type="color" id="headerColorPicker" /></label>
+        <label>Calendar Day Color: <input type="color" id="calendarColorPicker" /></label>
+        <button id="saveThemeBtn">💾 Save Theme</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Ed Gathecha. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
