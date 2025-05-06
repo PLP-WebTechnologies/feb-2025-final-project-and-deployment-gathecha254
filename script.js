@@ -151,6 +151,10 @@ function updateMoodUI(moodKey) {
   document.body.className = '';
   document.body.classList.add(moodKey);
 
+  // Force background color to ensure it overrides CSS classes
+  document.body.style.backgroundColor = mood.bgColor || "#ffffff";
+  document.body.style.color = mood.textColor || "#333";
+
   const header = document.querySelector("header");
   header.style.backgroundColor = mood.headerBg || "#007bff";
   header.style.color = mood.headerColor || "white";
@@ -190,9 +194,7 @@ function updateMoodUI(moodKey) {
   document.getElementById("textColorPicker").value = mood.textColor || "#333333";
   document.getElementById("buttonColorPicker").value = mood.buttonBg || "#007bff";
   document.getElementById("headerColorPicker").value = mood.headerBg || "#007bff";
-  document.getElementById("calendarColorPicker").value = mood.calendarColor || "#eee";
-
-  renderCalendar("homepageCalendarGrid");
+  document.getElementById("calendarColorPicker").value = mood.calendarColor || "#ccc";
 }
 
 // Load greeting
@@ -241,7 +243,7 @@ document.getElementById("soundToggle").addEventListener("change", () => {
 document.getElementById("saveJournalBtn").addEventListener("click", () => {
   const mood = moodSelect.value;
   const journalEntry = document.getElementById("journalEntry").value.trim();
-  const dateStr = new Date().toISOString().split('T')[0];
+  const dateStr = new Date().toISOString().split("T")[0];
 
   if (!journalEntry) return alert("Please write something before saving.");
 
@@ -280,45 +282,33 @@ function renderHistory() {
   list.innerHTML += "</ul>";
 }
 
-// Renders calendar grid into a container by ID
+// Render calendar
 function renderCalendar(containerId) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";
 
-  // Get current month/year for display
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
   const monthNames = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth();
-  const monthName = monthNames[month];
+  const monthName = monthNames[today.getMonth()];
+  document.getElementById("calendarMonthYear").textContent = `${monthName} ${year}`;
 
-  // Display month + year above calendar
-  const heading = document.getElementById("calendarMonthYear");
-  if (heading) {
-    heading.textContent = `${monthName} ${year}`;
-  }
-
-  // First day of the month (0-6)
   const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
   const startDay = firstDay.getDay();
 
-  // Last day of the month
-  const lastDay = new Date(year, month + 1, 0).getDate();
-
-  // Add empty cells for days before the 1st
   for (let i = 0; i < startDay; i++) {
-    const emptyCell = document.createElement("div");
-    container.appendChild(emptyCell);
+    const empty = document.createElement("div");
+    container.appendChild(empty);
   }
 
-  // Fill in each day
-  for (let d = 1; d <= lastDay; d++) {
-    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+  for (let d = 1; d <= lastDay.getDate(); d++) {
+    const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
     const entry = JSON.parse(localStorage.getItem(`journal-${dateStr}`)) || {};
-
     const cell = document.createElement("div");
     cell.textContent = d;
     cell.style.backgroundColor = entry.mood ? moodData[entry.mood]?.calendarColor || "#eee" : "#eee";
@@ -423,31 +413,20 @@ function loadThemeSettings() {
   document.getElementById("calendarColorPicker").value = mood.calendarColor || "#ccc";
 }
 
-// Save Theme Button Click
 document.getElementById("saveThemeBtn").addEventListener("click", () => {
   const mood = moodSelect.value;
   moodData[mood].bgColor = document.getElementById("bgColorPicker").value;
   moodData[mood].textColor = document.getElementById("textColorPicker").value;
   moodData[mood].buttonBg = document.getElementById("buttonColorPicker").value;
+  moodData[mood].buttonColor = "#fff";
   moodData[mood].headerBg = document.getElementById("headerColorPicker").value;
+  moodData[mood].headerColor = "#fff";
   moodData[mood].calendarColor = document.getElementById("calendarColorPicker").value;
 
   saveMoodData();
   updateMoodUI(mood);
   alert("🎨 Theme updated!");
 });
-
-// Update Mood UI Function
-function updateMoodUI(moodKey) {
-  const mood = moodData[moodKey];
-  document.body.className = '';
-  document.body.classList.add(moodKey);
-
-  // Apply background color to body
-  document.body.style.backgroundColor = mood.bgColor || "#ffffff";
-
-  // Other UI updates...
-}
 
 window.addEventListener("DOMContentLoaded", () => {
   renderHistory();
