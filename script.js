@@ -257,14 +257,16 @@ document.getElementById("saveJournalBtn").addEventListener("click", () => {
 // Render history
 function renderHistory() {
   const list = document.getElementById("historyList");
+  const keys = Object.keys(localStorage).filter(k => k.startsWith("journal-"));
+
+  if (keys.length === 0) {
+    list.innerHTML = "<p>No journal entries made yet.</p>";
+    return;
+  }
+
   list.innerHTML = "<ul>";
-  Object.keys(localStorage)
-    .filter(k => k.startsWith("journal-"))
-    .sort((a, b) => {
-      const dateA = a.replace("journal-", "");
-      const dateB = b.replace("journal-", "");
-      return dateB.localeCompare(dateA);
-    })
+  keys
+    .sort((a, b) => b.localeCompare(a))
     .forEach(key => {
       const entry = JSON.parse(localStorage.getItem(key));
       const date = key.replace("journal-", "");
