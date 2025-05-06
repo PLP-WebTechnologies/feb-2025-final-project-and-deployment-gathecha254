@@ -44,6 +44,6 @@ Welcome to **Soul Palette**, a personal mood journaling web app that helps you t
 
 ---
 
-## 🚀 How to Run Locally
+## 🚀 How to Run
 
 1. Visit: https://plp-webtechnologies.github.io/feb-2025-final-project-and-deployment-gathecha254/
