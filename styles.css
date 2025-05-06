@@ -1,0 +1,207 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Maven Pro', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  transition: all 0.5s ease;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Mood Themes */
+body.happy {
+  background-color: #fff3cd;
+  color: #7d4e00;
+}
+body.calm {
+  background-color: #d6f5f5;
+  color: #005c5c;
+}
+body.energetic {
+  background-color: #ffe6f0;
+  color: #8b003c;
+}
+body.sad {
+  background-color: #e0e0e0;
+  color: #2a2a2a;
+}
+body.tired {
+  background-color: #f1f1c9;
+  color: #555522;
+}
+body.reflective {
+  background-color: #f0f4ff;
+  color: #003366;
+}
+body.loved {
+  background-color: #fff0f6;
+  color: #7a003c;
+}
+
+header {
+  padding: 1rem;
+  text-align: center;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  position: relative;
+}
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+header p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.tabs {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+  margin-right: 10px;
+}
+.tabs button {
+  padding: 8px 16px;
+  border: none;
+  background: white;
+  color: #007bff;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.tabs button span.text-label (
+display: inline;
+)
+.tabs button.active {
+  background: #007bff;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: white;
+  min-height: 80vh;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+
+.carousel {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.carousel img {
+  width: 100%;
+  transition: opacity 0.8s ease;
+}
+
+#dailyAffirmation {
+  font-size: 1.2em;
+  margin: 20px 0;
+  min-height: 60px;
+  transition: opacity 0.5s ease;
+}
+
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+button:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+button:active {
+  transform: scale(0.98);
+  filter: brightness(0.95);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 20px;
+}
+.calendar-grid div {
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  padding: 5px;
+  font-size: 0.9em;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+.calendar-grid div:hover {
+  transform: scale(1.1);
+}
+
+.theme-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.theme-picker input[type="color"] {
+  width: 100px;
+  height: 30px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #666;
+  border-top: 1px solid #ddd;
+  margin-top: 30px;
+}
+@media (max-width: 600px) {
+  .tabs {
+    float: none;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+.tabs button {
+   font-size: 1rem;
+   padding: 6px 10px;
+}
+  .tabs button span.text-label {
+   display: none;
+}
+  .carousel {
+    max-width: 100%;
+  }
+}
