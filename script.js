@@ -423,20 +423,31 @@ function loadThemeSettings() {
   document.getElementById("calendarColorPicker").value = mood.calendarColor || "#ccc";
 }
 
+// Save Theme Button Click
 document.getElementById("saveThemeBtn").addEventListener("click", () => {
   const mood = moodSelect.value;
   moodData[mood].bgColor = document.getElementById("bgColorPicker").value;
   moodData[mood].textColor = document.getElementById("textColorPicker").value;
   moodData[mood].buttonBg = document.getElementById("buttonColorPicker").value;
-  moodData[mood].buttonColor = "#fff";
   moodData[mood].headerBg = document.getElementById("headerColorPicker").value;
-  moodData[mood].headerColor = "#fff";
   moodData[mood].calendarColor = document.getElementById("calendarColorPicker").value;
 
   saveMoodData();
   updateMoodUI(mood);
   alert("🎨 Theme updated!");
 });
+
+// Update Mood UI Function
+function updateMoodUI(moodKey) {
+  const mood = moodData[moodKey];
+  document.body.className = '';
+  document.body.classList.add(moodKey);
+
+  // Apply background color to body
+  document.body.style.backgroundColor = mood.bgColor || "#ffffff";
+
+  // Other UI updates...
+}
 
 window.addEventListener("DOMContentLoaded", () => {
   renderHistory();
